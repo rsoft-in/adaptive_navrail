@@ -6,12 +6,14 @@ const kMenu = [
     "code": "101",
     "title": "dashboard",
     "icon": CupertinoIcons.square_grid_2x2,
-    "submenu": []
+    "expanded": false,
+    "submenu": [],
   },
   {
     "code": "102",
     "title": "stamm",
     "icon": Icons.folder_outlined,
+    "expanded": false,
     "submenu": [
       {
         "code": "105",
@@ -61,6 +63,7 @@ const kMenu = [
     "code": "200",
     "title": "nds",
     "icon": Icons.folder_outlined,
+    "expanded": true,
     "submenu": [
       {
         "code": "205",
@@ -110,6 +113,7 @@ const kMenu = [
     "code": "250",
     "title": "abrechnung",
     "icon": Icons.folder_outlined,
+    "expanded": false,
     "submenu": [
       {
         "code": "255",
@@ -123,6 +127,7 @@ const kMenu = [
     "code": "300",
     "title": "lab",
     "icon": Icons.folder_outlined,
+    "expanded": false,
     "submenu": [
       {
         "code": "301",
@@ -136,6 +141,7 @@ const kMenu = [
     "code": "900",
     "title": "settings",
     "icon": CupertinoIcons.settings,
+    "expanded": false,
     "submenu": [
       {
         "code": "905",

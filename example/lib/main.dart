@@ -33,10 +33,11 @@ class _MyAppState extends State<MyApp> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AdaptiveNavrail(
-              // isExpanded: true,
+              isExpanded: true,
+              isDense: true,
               drawerItems: drawerMenu,
               onDrawerTap: (value) {
-                debugPrint(value);
+                debugPrint('You selected $value');
               },
             ),
             Flexible(

@@ -80,24 +80,20 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
               child: ListView.builder(
                 itemCount: widget.drawerItems.length,
                 itemBuilder: (context, index) {
-                  final item = widget.drawerItems[index];
-                  if (item.drawerItem.isEmpty) {
+                  final menuItem = widget.drawerItems[index];
+                  if (menuItem.subItems.isEmpty) {
                     return DrawerTile(
                       onTap: widget.onDrawerTap,
-                      code: item.code,
-                      title: item.title,
                       isExpanded: isExpanded,
                       isDense: widget.isDense,
-                      leadingIcon: item.icon,
+                      menu: menuItem,
                     );
                   } else {
                     return DrawerExpansionTile(
-                      drawerItem: item,
                       onChildTap: (value) => widget.onDrawerTap(value),
-                      title: item.title,
                       isExpanded: isExpanded,
                       isDense: widget.isDense,
-                      leadingIcon: item.icon,
+                      menu: menuItem,
                     );
                   }
                 },

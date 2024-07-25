@@ -1,20 +1,18 @@
+import 'package:adaptive_navrail/helpers/constants.dart';
+import 'package:adaptive_navrail/models/drawer_item.dart';
 import 'package:flutter/material.dart';
 
 class DrawerTile extends StatefulWidget {
   final Function(String) onTap;
   final bool isExpanded;
-  final IconData? leadingIcon;
-  final String title;
-  final String code;
   final bool isDense;
+  final DrawerItem menu;
   const DrawerTile({
     super.key,
     required this.onTap,
     this.isExpanded = false,
-    this.leadingIcon,
-    required this.title,
-    required this.code,
     this.isDense = false,
+    required this.menu,
   });
 
   @override
@@ -25,7 +23,7 @@ class _DrawerTileState extends State<DrawerTile> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => widget.onTap(widget.code),
+      onTap: () => widget.onTap(widget.menu.code),
       borderRadius: BorderRadius.circular(50),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -35,8 +33,8 @@ class _DrawerTileState extends State<DrawerTile> {
               : MainAxisAlignment.center,
           children: [
             Icon(
-              widget.leadingIcon,
-              size: widget.isDense ? 20 : 24,
+              widget.menu.icon,
+              size: widget.isDense ? iconSizeDense : iconSizeNormal,
             ),
             if (widget.isExpanded)
               const SizedBox(
@@ -45,10 +43,10 @@ class _DrawerTileState extends State<DrawerTile> {
             if (widget.isExpanded)
               Expanded(
                 child: Text(
-                  widget.title,
+                  widget.menu.title,
                   maxLines: 1,
                   style: TextStyle(
-                    fontSize: widget.isDense ? 12 : 16,
+                    fontSize: widget.isDense ? fontDense : fontNormal,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
