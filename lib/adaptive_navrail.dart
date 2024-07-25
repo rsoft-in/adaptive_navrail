@@ -57,13 +57,14 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
   @override
   Widget build(BuildContext context) {
     isDesktop = isDeviceLarge(context);
-    // print('init value ${widget.isExpanded}');
-    // if (!userInitiatedExpansion) {
-    //   setState(() {
-    //     isExpanded = isDesktop;
-    //     print('init value chan $isExpanded');
-    //   });
-    // }
+    setState(() {
+      if (userInitiatedExpansion) {
+        userInitiatedExpansion = false;
+      } else {
+        isExpanded = isDesktop;
+        isExpanded ? controller.forward() : controller.reverse();
+      }
+    });
 
     return Material(
       color: Theme.of(context).colorScheme.surfaceContainer,
@@ -108,10 +109,8 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                 onPressed: () {
                   setState(() {
                     isExpanded = !isExpanded;
-                    // userInitiatedExpansion = true;
-
+                    userInitiatedExpansion = true;
                     isExpanded ? controller.forward() : controller.reverse();
-                    print(isExpanded);
                   });
                 },
                 icon: AnimatedIcon(
