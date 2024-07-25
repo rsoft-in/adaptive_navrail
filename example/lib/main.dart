@@ -47,7 +47,7 @@ class _MyAppState extends State<MyApp> {
                   title: const Text('AdaptiveNavrail'),
                 ),
                 const ListTile(
-                  title: Text('data'),
+                  title: Text('Welcome'),
                 ),
               ],
             ))
