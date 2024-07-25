@@ -5,7 +5,7 @@ A Simple Adaptive Navrail with one sub level menu. In expanded state it will use
 ## Getting Started
 
 Create a menu in json format
-'''
+```
 const kMenu = [
   {
     "code": "100",
@@ -51,11 +51,11 @@ const kMenu = [
     ]
   }
 ]
-'''
+```
 
 Map the JSON menu into Object model
 
-'''
+```
 List<DrawerItem> drawerMenu = [];
 
 @override
@@ -64,11 +64,11 @@ drawerMenu =
     kMenu.map<DrawerItem>((json) => DrawerItem.fromJson(json)).toList();
 super.initState();
 }
-'''
+```
 
 Create the instance of AdaptiveNavrail
 
-'''
+```
 @override
 Widget build(BuildContext context) {
     return MaterialApp(
@@ -101,4 +101,4 @@ Widget build(BuildContext context) {
         ),
     );
 }
-'''
+```
