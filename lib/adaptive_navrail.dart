@@ -18,13 +18,18 @@ class AdaptiveNavrail extends StatefulWidget {
   final Function(String) onDrawerTap;
   final bool isExpanded;
   final bool isDense;
-  const AdaptiveNavrail({
-    super.key,
-    required this.drawerItems,
-    required this.onDrawerTap,
-    this.isExpanded = false,
-    this.isDense = false,
-  });
+  final Widget? icon;
+  final String? title;
+  final String? subTitle;
+  const AdaptiveNavrail(
+      {super.key,
+      required this.drawerItems,
+      required this.onDrawerTap,
+      this.isExpanded = false,
+      this.isDense = false,
+      this.icon,
+      this.title,
+      this.subTitle});
 
   @override
   State<AdaptiveNavrail> createState() => _AdaptiveNavrailState();
@@ -76,6 +81,38 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            if (widget.icon != null || widget.title != null)
+              Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: Row(
+                  children: [
+                    widget.icon ?? Container(),
+                    if (isExpanded)
+                      const SizedBox(
+                        width: 8,
+                      ),
+                    if (isExpanded)
+                      Expanded(
+                          child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          if (widget.title != null)
+                            Text(
+                              widget.title ?? '',
+                              style: const TextStyle(fontSize: 16),
+                            ),
+                          if (widget.subTitle != null)
+                            Text(
+                              widget.subTitle ?? '',
+                              style: const TextStyle(fontSize: 12),
+                            ),
+                        ],
+                      ))
+                  ],
+                ),
+              ),
             Expanded(
               child: ListView.builder(
                 itemCount: widget.drawerItems.length,

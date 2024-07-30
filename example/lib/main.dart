@@ -31,11 +31,17 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AdaptiveNavrail(
               isExpanded: true,
               isDense: true,
               drawerItems: drawerMenu,
+              icon: const Icon(
+                Icons.face,
+                size: 32,
+              ),
+              title: 'Example',
               onDrawerTap: (value) {
                 debugPrint('You selected $value');
               },
