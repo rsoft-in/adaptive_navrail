@@ -37,11 +37,17 @@ class _MyAppState extends State<MyApp> {
               isExpanded: true,
               isDense: true,
               drawerItems: drawerMenu,
-              icon: const Icon(
-                Icons.face,
-                size: 32,
+              header: const Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Example',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  Text('Welcome'),
+                ],
               ),
-              title: 'Example',
               onDrawerTap: (value) {
                 debugPrint('You selected $value');
               },
