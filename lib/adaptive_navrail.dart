@@ -20,14 +20,17 @@ class AdaptiveNavrail extends StatefulWidget {
   final bool isDense;
   final Widget? header;
   final Widget? icon;
-  const AdaptiveNavrail(
-      {super.key,
-      required this.drawerItems,
-      required this.onDrawerTap,
-      this.isExpanded = false,
-      this.isDense = false,
-      this.header,
-      this.icon});
+  final String selectedMenuCode;
+  const AdaptiveNavrail({
+    super.key,
+    required this.drawerItems,
+    required this.onDrawerTap,
+    this.isExpanded = false,
+    this.isDense = false,
+    this.header,
+    this.icon,
+    required this.selectedMenuCode,
+  });
 
   @override
   State<AdaptiveNavrail> createState() => _AdaptiveNavrailState();
@@ -38,6 +41,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
   bool isExpanded = false;
   bool isDesktop = false;
   bool userInitiatedExpansion = false;
+  String selectedMenuCode = '';
 
   late AnimationController controller;
 
@@ -48,6 +52,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
         vsync: this, duration: const Duration(milliseconds: 200));
 
     isExpanded = widget.isExpanded;
+    selectedMenuCode = widget.selectedMenuCode;
     if (isExpanded) controller.forward();
   }
 
@@ -102,6 +107,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                       isExpanded: isExpanded,
                       isDense: widget.isDense,
                       menu: menuItem,
+                      selectedMenuCode: selectedMenuCode,
                     );
                   } else {
                     return DrawerExpansionTile(
@@ -109,6 +115,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                       isExpanded: isExpanded,
                       isDense: widget.isDense,
                       menu: menuItem,
+                      selectedMenuCode: selectedMenuCode,
                     );
                   }
                 },

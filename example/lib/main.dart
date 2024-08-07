@@ -16,18 +16,19 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   List<DrawerItem> drawerMenu = [];
+  String selectedMenuCode = '';
 
   @override
   void initState() {
     drawerMenu =
         kMenu.map<DrawerItem>((json) => DrawerItem.fromJson(json)).toList();
     super.initState();
+    selectedMenuCode = drawerMenu[0].code;
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
         body: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,6 +38,7 @@ class _MyAppState extends State<MyApp> {
               isExpanded: true,
               isDense: true,
               drawerItems: drawerMenu,
+              selectedMenuCode: selectedMenuCode,
               header: const Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
@@ -49,6 +51,9 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
               onDrawerTap: (value) {
+                setState(() {
+                  selectedMenuCode = value;
+                });
                 debugPrint('You selected $value');
               },
             ),

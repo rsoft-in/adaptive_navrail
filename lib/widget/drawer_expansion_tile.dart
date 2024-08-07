@@ -8,12 +8,15 @@ class DrawerExpansionTile extends StatefulWidget {
   final Function(String) onChildTap;
   final DrawerItem menu;
   final bool isDense;
-  const DrawerExpansionTile(
-      {super.key,
-      this.isExpanded = false,
-      required this.menu,
-      required this.onChildTap,
-      this.isDense = false});
+  final String selectedMenuCode;
+  const DrawerExpansionTile({
+    super.key,
+    this.isExpanded = false,
+    required this.menu,
+    required this.onChildTap,
+    this.isDense = false,
+    required this.selectedMenuCode,
+  });
 
   @override
   State<DrawerExpansionTile> createState() => _DrawerExpansionTileState();
@@ -46,6 +49,7 @@ class _DrawerExpansionTileState extends State<DrawerExpansionTile> {
                       isExpanded: widget.isExpanded,
                       isDense: widget.isDense,
                       menu: item,
+                      selectedMenuCode: widget.selectedMenuCode,
                     ))
                 .toList(),
           )
@@ -58,6 +62,7 @@ class _DrawerExpansionTileState extends State<DrawerExpansionTile> {
                     onTap: (value) => widget.onChildTap(item.code),
                     isExpanded: widget.isExpanded,
                     menu: item,
+                    selectedMenuCode: widget.selectedMenuCode,
                   )),
             ],
           );
