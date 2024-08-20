@@ -102,20 +102,36 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                 itemBuilder: (context, index) {
                   final menuItem = widget.drawerItems[index];
                   if (menuItem.subItems.isEmpty) {
-                    return DrawerTile(
-                      onTap: widget.onDrawerTap,
-                      isExpanded: isExpanded,
-                      isDense: widget.isDense,
-                      menu: menuItem,
-                      selectedMenuCode: selectedMenuCode,
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 4),
+                      child: DrawerTile(
+                        onTap: (value) {
+                          setState(() {
+                            selectedMenuCode = value;
+                          });
+                          widget.onDrawerTap;
+                        },
+                        isExpanded: isExpanded,
+                        isDense: widget.isDense,
+                        menu: menuItem,
+                        selectedMenuCode: selectedMenuCode,
+                      ),
                     );
                   } else {
-                    return DrawerExpansionTile(
-                      onChildTap: (value) => widget.onDrawerTap(value),
-                      isExpanded: isExpanded,
-                      isDense: widget.isDense,
-                      menu: menuItem,
-                      selectedMenuCode: selectedMenuCode,
+                    return Container(
+                      margin: const EdgeInsets.only(bottom: 4),
+                      child: DrawerExpansionTile(
+                        onChildTap: (value) {
+                          setState(() {
+                            selectedMenuCode = value;
+                          });
+                          widget.onDrawerTap(value);
+                        },
+                        isExpanded: isExpanded,
+                        isDense: widget.isDense,
+                        menu: menuItem,
+                        selectedMenuCode: selectedMenuCode,
+                      ),
                     );
                   }
                 },

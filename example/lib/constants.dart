@@ -16,12 +16,12 @@ const kMenu = [
     "submenu": [
       {
         "code": "201",
-        "title": "Sub Menu 1",
+        "title": "Contacts",
         "icon": Icons.contact_page_outlined,
       },
       {
         "code": "202",
-        "title": "Sub Menu 2",
+        "title": "Mail",
         "icon": Icons.email_outlined,
       },
     ]
@@ -34,14 +34,21 @@ const kMenu = [
     "submenu": [
       {
         "code": "301",
-        "title": "Sub Menu 1",
+        "title": "Shapes",
         "icon": Icons.category_outlined,
       },
       {
         "code": "302",
-        "title": "Sub Menu 2",
+        "title": "Group",
         "icon": Icons.group_outlined,
       },
     ]
-  }
+  },
+  {
+    "code": "400",
+    "title": "Settings",
+    "icon": Icons.settings_outlined,
+    "expanded": false,
+    "submenu": [],
+  },
 ];

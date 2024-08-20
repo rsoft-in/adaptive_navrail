@@ -28,9 +28,9 @@ class _DrawerTileState extends State<DrawerTile> {
         widget.onTap(widget.menu.code);
         setState(() {});
       },
-      borderRadius: BorderRadius.circular(50),
+      borderRadius: BorderRadius.circular(10),
       child: Material(
-        borderRadius: BorderRadius.circular(50),
+        borderRadius: BorderRadius.circular(10),
         color: widget.menu.code == widget.selectedMenuCode
             ? Theme.of(context).colorScheme.surfaceContainerHighest
             : Colors.transparent,
