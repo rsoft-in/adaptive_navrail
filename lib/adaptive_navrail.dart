@@ -76,7 +76,8 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
 
     return Material(
       color: Theme.of(context).colorScheme.surfaceContainer,
-      borderRadius: BorderRadius.circular(10),
+      borderRadius: const BorderRadius.only(
+          topRight: Radius.circular(10), bottomRight: Radius.circular(10)),
       child: AnimatedContainer(
         margin: const EdgeInsets.symmetric(horizontal: 5, vertical: 10),
         duration: const Duration(milliseconds: 200),
@@ -86,8 +87,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
           children: [
             if (widget.header != null || widget.icon != null)
               Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 8),
                 child: Row(
                   children: [
                     widget.icon ?? Container(),

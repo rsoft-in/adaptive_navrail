@@ -39,16 +39,32 @@ class _MyAppState extends State<MyApp> {
               isDense: true,
               drawerItems: drawerMenu,
               selectedMenuCode: selectedMenuCode,
-              header: const Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    'Example',
-                    style: TextStyle(fontSize: 22),
+              header: Material(
+                color: Theme.of(context).colorScheme.primaryFixed,
+                borderRadius: BorderRadius.circular(10),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  child: Row(
+                    children: [
+                      FlutterLogo(
+                        size: 36,
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'AdaptiveNavrail',
+                            style: TextStyle(fontSize: 22),
+                          ),
+                          Text('Example'),
+                        ],
+                      ),
+                    ],
                   ),
-                  Text('Welcome'),
-                ],
+                ),
               ),
               onDrawerTap: (value) {
                 setState(() {
@@ -63,9 +79,14 @@ class _MyAppState extends State<MyApp> {
                 AppBar(
                   title: const Text('AdaptiveNavrail'),
                 ),
-                const ListTile(
-                  title: Text('Welcome'),
-                ),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: 30,
+                    itemBuilder: (context, index) => ListTile(
+                      title: Text('Item $index'),
+                    ),
+                  ),
+                )
               ],
             ))
           ],
