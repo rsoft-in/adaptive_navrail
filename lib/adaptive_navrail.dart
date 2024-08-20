@@ -109,7 +109,7 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                           setState(() {
                             selectedMenuCode = value;
                           });
-                          widget.onDrawerTap;
+                          widget.onDrawerTap(value);
                         },
                         isExpanded: isExpanded,
                         isDense: widget.isDense,
