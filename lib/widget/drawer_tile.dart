@@ -29,47 +29,51 @@ class _DrawerTileState extends State<DrawerTile> {
         setState(() {});
       },
       borderRadius: BorderRadius.circular(10),
-      child: Material(
-        borderRadius: BorderRadius.circular(10),
-        color: widget.menu.code == widget.selectedMenuCode
-            ? Theme.of(context).colorScheme.surfaceContainerHighest
-            : Colors.transparent,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-          child: Row(
-            mainAxisAlignment: widget.isExpanded
-                ? MainAxisAlignment.start
-                : MainAxisAlignment.center,
-            children: [
-              Icon(
-                widget.menu.icon,
-                size: widget.isDense ? iconSizeDense : iconSizeNormal,
-                color: widget.menu.code == widget.selectedMenuCode
-                    ? Theme.of(context).colorScheme.primary
-                    : null,
-              ),
-              if (widget.isExpanded)
-                const SizedBox(
-                  width: 14,
+      child: Tooltip(
+        message: widget.menu.title,
+        triggerMode: TooltipTriggerMode.longPress,
+        child: Material(
+          borderRadius: BorderRadius.circular(10),
+          color: widget.menu.code == widget.selectedMenuCode
+              ? Theme.of(context).colorScheme.surfaceContainerHighest
+              : Colors.transparent,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            child: Row(
+              mainAxisAlignment: widget.isExpanded
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.center,
+              children: [
+                Icon(
+                  widget.menu.icon,
+                  size: widget.isDense ? iconSizeDense : iconSizeNormal,
+                  color: widget.menu.code == widget.selectedMenuCode
+                      ? Theme.of(context).colorScheme.primary
+                      : null,
                 ),
-              if (widget.isExpanded)
-                Expanded(
-                  child: Text(
-                    widget.menu.title,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontWeight: widget.menu.code == widget.selectedMenuCode
-                          ? FontWeight.bold
-                          : FontWeight.normal,
-                      fontSize: widget.isDense ? fontDense : fontNormal,
-                      color: widget.menu.code == widget.selectedMenuCode
-                          ? Theme.of(context).colorScheme.primary
-                          : null,
-                    ),
-                    overflow: TextOverflow.ellipsis,
+                if (widget.isExpanded)
+                  const SizedBox(
+                    width: 14,
                   ),
-                ),
-            ],
+                if (widget.isExpanded)
+                  Expanded(
+                    child: Text(
+                      widget.menu.title,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontWeight: widget.menu.code == widget.selectedMenuCode
+                            ? FontWeight.bold
+                            : FontWeight.normal,
+                        fontSize: widget.isDense ? fontDense : fontNormal,
+                        color: widget.menu.code == widget.selectedMenuCode
+                            ? Theme.of(context).colorScheme.primary
+                            : null,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+              ],
+            ),
           ),
         ),
       ),
