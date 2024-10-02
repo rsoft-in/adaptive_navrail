@@ -21,16 +21,17 @@ class AdaptiveNavrail extends StatefulWidget {
   final Widget? header;
   final Widget? icon;
   final String selectedMenuCode;
-  const AdaptiveNavrail({
-    super.key,
-    required this.drawerItems,
-    required this.onDrawerTap,
-    this.isExpanded = false,
-    this.isDense = false,
-    this.header,
-    this.icon,
-    required this.selectedMenuCode,
-  });
+  final bool isDrawer;
+  const AdaptiveNavrail(
+      {super.key,
+      required this.drawerItems,
+      required this.onDrawerTap,
+      this.isExpanded = false,
+      this.isDense = false,
+      this.header,
+      this.icon,
+      required this.selectedMenuCode,
+      this.isDrawer = false});
 
   @override
   State<AdaptiveNavrail> createState() => _AdaptiveNavrailState();
@@ -50,10 +51,13 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
     super.initState();
     controller = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 200));
-
-    isExpanded = widget.isExpanded;
-    selectedMenuCode = widget.selectedMenuCode;
-    if (isExpanded) controller.forward();
+    if (widget.isDrawer) {
+      isExpanded = true;
+    } else {
+      isExpanded = widget.isExpanded;
+      selectedMenuCode = widget.selectedMenuCode;
+      if (isExpanded) controller.forward();
+    }
   }
 
   @override
@@ -66,11 +70,13 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
   Widget build(BuildContext context) {
     isDesktop = isDeviceLarge(context);
     setState(() {
-      if (userInitiatedExpansion) {
-        userInitiatedExpansion = false;
-      } else {
-        isExpanded = isDesktop;
-        isExpanded ? controller.forward() : controller.reverse();
+      if (!widget.isDrawer) {
+        if (userInitiatedExpansion) {
+          userInitiatedExpansion = false;
+        } else {
+          isExpanded = isDesktop;
+          isExpanded ? controller.forward() : controller.reverse();
+        }
       }
     });
 
@@ -110,6 +116,9 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                             selectedMenuCode = value;
                           });
                           widget.onDrawerTap(value);
+                          if (widget.isDrawer) {
+                            Navigator.pop(context);
+                          }
                         },
                         isExpanded: isExpanded,
                         isDense: widget.isDense,
@@ -126,6 +135,9 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                             selectedMenuCode = value;
                           });
                           widget.onDrawerTap(value);
+                          if (widget.isDrawer) {
+                            Navigator.pop(context);
+                          }
                         },
                         isExpanded: isExpanded,
                         isDense: widget.isDense,
@@ -137,22 +149,24 @@ class _AdaptiveNavrailState extends State<AdaptiveNavrail>
                 },
               ),
             ),
-            Align(
-              alignment: isExpanded ? Alignment.centerRight : Alignment.center,
-              child: IconButton(
-                onPressed: () {
-                  setState(() {
-                    isExpanded = !isExpanded;
-                    userInitiatedExpansion = true;
-                    isExpanded ? controller.forward() : controller.reverse();
-                  });
-                },
-                icon: AnimatedIcon(
-                  icon: AnimatedIcons.menu_arrow,
-                  progress: controller,
+            if (!widget.isDrawer)
+              Align(
+                alignment:
+                    isExpanded ? Alignment.centerRight : Alignment.center,
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isExpanded = !isExpanded;
+                      userInitiatedExpansion = true;
+                      isExpanded ? controller.forward() : controller.reverse();
+                    });
+                  },
+                  icon: AnimatedIcon(
+                    icon: AnimatedIcons.menu_arrow,
+                    progress: controller,
+                  ),
                 ),
               ),
-            ),
           ],
         ),
       ),
