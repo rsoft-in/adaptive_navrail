@@ -6,7 +6,9 @@ class DrawerItem {
   IconData icon;
   bool expanded;
   List<DrawerItem> subItems;
-  DrawerItem(this.code, this.title, this.icon, this.subItems, this.expanded);
+  String route;
+  DrawerItem(this.code, this.title, this.icon, this.subItems, this.expanded,
+      this.route);
   DrawerItem.fromJson(Map<String, dynamic> parsed)
       : code = parsed['code'],
         title = parsed['title'],
@@ -14,5 +16,6 @@ class DrawerItem {
         expanded = parsed['expanded'] ?? false,
         subItems = ((parsed['submenu'] ?? []) as List)
             .map((e) => DrawerItem.fromJson(e))
-            .toList();
+            .toList(),
+        route = parsed['route'];
 }
