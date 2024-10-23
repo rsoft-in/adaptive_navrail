@@ -17,5 +17,5 @@ class DrawerItem {
         subItems = ((parsed['submenu'] ?? []) as List)
             .map((e) => DrawerItem.fromJson(e))
             .toList(),
-        route = parsed['route'];
+        route = parsed['route'] ?? '';
 }
